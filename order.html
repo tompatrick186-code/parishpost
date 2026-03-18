@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Submit your news — Parish Post</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1A1A14;--paper:#FAF7F2;--red:#8B1A1A;--red-mid:#A52020;--stone:#C4B99A;--muted:#6B6555;--border:rgba(139,26,26,0.12);--white:#FFFFFF;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 3rem;background:rgba(250,247,242,0.94);backdrop-filter:blur(10px);border-bottom:0.5px solid var(--border)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--red);text-decoration:none}
+.nav-logo span{color:var(--stone);font-style:italic}
+.page-wrap{max-width:680px;margin:0 auto;padding:9rem 2rem 6rem}
+.page-tag{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:1rem}
+.page-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:400;color:var(--ink);line-height:1.1;margin-bottom:0.75rem}
+.page-title em{font-style:italic;color:var(--red)}
+.page-sub{font-size:0.95rem;color:var(--muted);line-height:1.8;font-weight:300;margin-bottom:3rem}
+.form{display:flex;flex-direction:column;gap:1.5rem}
+.field{display:flex;flex-direction:column;gap:0.4rem}
+.field label{font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.field input,.field textarea{padding:0.875rem 1rem;background:var(--white);border:0.5px solid var(--stone);color:var(--ink);font-family:'DM Sans',sans-serif;font-size:0.9rem;outline:none;width:100%;transition:border-color 0.2s}
+.field input:focus,.field textarea:focus{border-color:var(--red)}
+.field textarea{min-height:120px;resize:vertical}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.field-hint{font-size:0.75rem;color:var(--stone);margin-top:0.2rem}
+.divider{height:0.5px;background:var(--border)}
+.submit-btn{padding:1rem 2.5rem;background:var(--red);color:var(--white);font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;transition:background 0.2s;align-self:flex-start}
+.submit-btn:hover{background:var(--red-mid)}
+.submit-btn:disabled{opacity:0.5;cursor:not-allowed}
+.success-state{display:none;text-align:center;padding:3rem 2rem;background:var(--white);border:0.5px solid var(--border)}
+.success-icon{font-size:2.5rem;margin-bottom:1rem;color:var(--red)}
+.success-title{font-family:'Playfair Display',serif;font-size:1.75rem;color:var(--ink);margin-bottom:0.75rem}
+.success-body{font-size:0.9rem;color:var(--muted);line-height:1.8;font-weight:300}
+@media(max-width:600px){nav{padding:1rem 1.25rem}.page-wrap{padding:7rem 1.25rem 4rem}.field-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">Parish<span>Post</span></a>
+</nav>
+<div class="page-wrap">
+  <p class="page-tag">Submit this month's news</p>
+  <h1 class="page-title">Tell us what's<br><em>happening</em></h1>
+  <p class="page-sub">Fill in the details below. We'll turn it into a polished newsletter and email it to you — usually within the hour.</p>
+
+  <form class="form" id="order-form">
+    <div class="divider"></div>
+    <p style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted)">Your details</p>
+    <div class="field-row">
+      <div class="field">
+        <label for="parish">Parish / village name</label>
+        <input type="text" id="parish" name="parish" placeholder="Thornbury Parish Council" required>
+      </div>
+      <div class="field">
+        <label for="name">Your name</label>
+        <input type="text" id="name" name="name" placeholder="Jane Smith" required>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label for="email">Your email address</label>
+        <input type="email" id="email" name="email" placeholder="clerk@thornburypc.gov.uk" required>
+        <span class="field-hint">We'll send the newsletter here</span>
+      </div>
+      <div class="field">
+        <label for="residents_email">Residents mailing list (optional)</label>
+        <input type="email" id="residents_email" name="residents_email" placeholder="newsletter@thornburypc.gov.uk">
+        <span class="field-hint">We'll also send it here if provided</span>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <p style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted)">This month's content</p>
+    <div class="field">
+      <label for="council_news">Parish council news</label>
+      <textarea id="council_news" name="council_news" placeholder="e.g. Approved resurfacing of Church Lane starting April. Planning permission granted for new noticeboard at village green." required></textarea>
+      <span class="field-hint">Key decisions, planning updates, road works, notices</span>
+    </div>
+    <div class="field">
+      <label for="events">Upcoming events</label>
+      <textarea id="events" name="events" placeholder="e.g. Sat 22 March — Spring Quiz, The Crown, 7pm. Sun 30 March — Easter Egg Hunt, Village Green, 10am."></textarea>
+      <span class="field-hint">Include dates, times and locations</span>
+    </div>
+    <div class="field">
+      <label for="community">Community notices</label>
+      <textarea id="community" name="community" placeholder="e.g. Litter pick on 5 April, meet at car park 9am. Village hall quiz raising funds for roof repairs."></textarea>
+      <span class="field-hint">Local notices, lost &amp; found, clubs, anything else</span>
+    </div>
+    <div class="field">
+      <label for="tone">Tone preference (optional)</label>
+      <input type="text" id="tone" name="tone" placeholder="e.g. Friendly and informal, or traditional and formal">
+    </div>
+    <button type="submit" class="submit-btn" id="submit-btn">Generate my newsletter &rarr;</button>
+  </form>
+
+  <div class="success-state" id="success-state">
+    <div class="success-icon">&#10003;</div>
+    <div class="success-title">On its way</div>
+    <div class="success-body">
+      We're writing your newsletter now.<br>
+      It'll be in your inbox within the hour.<br><br>
+      Questions? Email <a href="mailto:hello@theparishpost.co.uk" style="color:var(--red)">hello@theparishpost.co.uk</a>
+    </div>
+  </div>
+</div>
+
+<script>
+document.getElementById('order-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+  var formData = new FormData(this);
+  var data = {};
+  formData.forEach(function(v, k){ data[k] = v; });
+  fetch('https://parishpost-production.up.railway.app/order', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(data)
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(){
+    document.getElementById('order-form').style.display = 'none';
+    document.getElementById('success-state').style.display = 'block';
+  })
+  .catch(function(){
+    btn.disabled = false;
+    btn.textContent = 'Generate my newsletter →';
+    alert('Something went wrong — please try again or email hello@theparishpost.co.uk');
+  });
+});
+</script>
+</body>
+</html>

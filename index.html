@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parish Post — The effortless newsletter for your village</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1A1A14;--paper:#FAF7F2;--paper-dark:#F0EBE0;--red:#8B1A1A;--red-mid:#A52020;
+  --stone:#C4B99A;--muted:#6B6555;--border:rgba(139,26,26,0.12);--white:#FFFFFF;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 3rem;background:rgba(250,247,242,0.94);backdrop-filter:blur(10px);border-bottom:0.5px solid var(--border)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--red);letter-spacing:0.01em;text-decoration:none}
+.nav-logo span{color:var(--stone);font-style:italic}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{font-size:0.82rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:var(--red)}
+.nav-cta{background:var(--red);color:var(--white)!important;padding:0.5rem 1.25rem;font-size:0.78rem!important}
+.hero{min-height:100vh;display:flex;align-items:center;padding:8rem 3rem 5rem;max-width:1100px;margin:0 auto}
+.hero-inner{max-width:680px}
+.hero-tag{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:1.25rem;display:flex;align-items:center;gap:0.5rem}
+.hero-tag::before{content:'';display:inline-block;width:24px;height:1px;background:var(--red)}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,5vw,4.2rem);font-weight:400;color:var(--ink);line-height:1.08;margin-bottom:1.5rem}
+.hero-title em{font-style:italic;color:var(--red)}
+.hero-sub{font-size:1.05rem;color:var(--muted);line-height:1.85;font-weight:300;margin-bottom:2.5rem;max-width:520px}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;align-items:center}
+.btn-primary{padding:0.9rem 2.25rem;background:var(--red);color:var(--white);font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:background 0.2s;display:inline-block}
+.btn-primary:hover{background:var(--red-mid)}
+.btn-ghost{font-size:0.85rem;color:var(--muted);text-decoration:none;letter-spacing:0.04em}
+.hero-proof{margin-top:3.5rem;padding-top:2rem;border-top:0.5px solid var(--border);font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--stone)}
+.section{padding:6rem 3rem;max-width:1100px;margin:0 auto}
+.section-tag{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:1rem}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:400;color:var(--ink);margin-bottom:1rem;line-height:1.2}
+.section-title em{font-style:italic;color:var(--red)}
+.section-sub{font-size:0.95rem;color:var(--muted);line-height:1.85;font-weight:300;max-width:520px;margin-bottom:3.5rem}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.step{padding:2rem;background:var(--white);border:0.5px solid var(--border)}
+.step-num{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;color:var(--red);margin-bottom:1rem}
+.step-title{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--ink);margin-bottom:0.75rem}
+.step-body{font-size:0.88rem;color:var(--muted);line-height:1.8}
+.sample-wrap{background:var(--paper-dark);padding:4rem 3rem;border-top:0.5px solid var(--border);border-bottom:0.5px solid var(--border)}
+.sample-inner{max-width:680px;margin:0 auto}
+.newsletter-preview{background:var(--white);border:1px solid #e0d8cc;padding:2.5rem;font-family:Georgia,serif}
+.nl-header{border-bottom:2px solid var(--red);padding-bottom:1rem;margin-bottom:1.5rem}
+.nl-title{font-size:1.4rem;font-weight:700;color:var(--red)}
+.nl-subtitle{font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--stone);margin-top:0.25rem;font-family:'DM Mono',monospace}
+.nl-section{margin-bottom:1.5rem}
+.nl-section h3{font-size:0.95rem;font-weight:700;color:var(--ink);border-bottom:0.5px solid var(--paper-dark);padding-bottom:0.4rem;margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.06em;font-family:'DM Sans',sans-serif}
+.nl-section p{font-size:0.88rem;color:#444;line-height:1.75;margin-bottom:0.5rem}
+.nl-event{font-size:0.83rem;color:var(--muted);padding:0.5rem 0;border-bottom:0.5px solid var(--paper-dark)}
+.nl-event strong{color:var(--ink)}
+.pricing-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;max-width:700px}
+.price-card{padding:2rem;background:var(--white);border:0.5px solid var(--border)}
+.price-card.featured{background:var(--red);border-color:var(--red)}
+.price-card.featured *{color:var(--white)!important}
+.price-tag{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--stone);margin-bottom:0.75rem}
+.price-amount{font-family:'Playfair Display',serif;font-size:2.5rem;color:var(--ink);margin-bottom:0.25rem}
+.price-period{font-size:0.8rem;color:var(--muted)}
+.price-features{margin-top:1.25rem;list-style:none;display:flex;flex-direction:column;gap:0.5rem}
+.price-features li{font-size:0.83rem;color:var(--muted);display:flex;align-items:flex-start;gap:0.5rem}
+.price-features li::before{content:'—';color:var(--red);flex-shrink:0}
+.cta-band{background:var(--red);padding:5rem 3rem;text-align:center}
+.cta-band h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.8rem);color:var(--white);margin-bottom:1rem}
+.cta-band p{font-size:0.95rem;color:rgba(255,255,255,0.75);margin-bottom:2rem;font-weight:300}
+.btn-light{padding:0.9rem 2.25rem;background:var(--white);color:var(--red);font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;display:inline-block}
+footer{padding:2rem 3rem;border-top:0.5px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;color:var(--stone)}
+@media(max-width:700px){nav{padding:1rem 1.25rem}.hero{padding:7rem 1.25rem 4rem}.section{padding:4rem 1.25rem}.steps{grid-template-columns:1fr}.pricing-grid{grid-template-columns:1fr}.sample-wrap{padding:2.5rem 1.25rem}footer{flex-direction:column;gap:0.5rem;text-align:center}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="#">Parish<span>Post</span></a>
+  <ul class="nav-links">
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#sample">Sample</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a class="nav-cta" href="order.html">Get started free</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">For parish councils &amp; village communities</div>
+    <h1 class="hero-title">Your village newsletter,<br><em>written for you</em><br>every month.</h1>
+    <p class="hero-sub">Parish Post turns your local news, events and updates into a beautifully written newsletter — automatically. No writing, no design, no hassle. Just tell us what's happening and we do the rest.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="order.html">Get your first newsletter free &rarr;</a>
+      <a class="btn-ghost" href="#sample">See a sample ↓</a>
+    </div>
+    <div class="hero-proof">Used by parish councils across England &middot; First edition always free</div>
+  </div>
+</div>
+
+<div class="section" id="how">
+  <p class="section-tag">How it works</p>
+  <h2 class="section-title">Ready in <em>minutes,</em><br>not days.</h2>
+  <p class="section-sub">No software to learn. No design skills needed. Just fill in a short form and your newsletter is ready to send.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01 — Submit</div>
+      <div class="step-title">Tell us your news</div>
+      <div class="step-body">Fill in a short form each month — recent news, upcoming events, council updates. Takes five minutes.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">02 — Generate</div>
+      <div class="step-title">We write it up</div>
+      <div class="step-body">Our system turns your notes into a polished, well-written newsletter that sounds like a real editor wrote it.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">03 — Send</div>
+      <div class="step-title">Delivered to residents</div>
+      <div class="step-body">We email it to your entire residents list within the hour. Or download the PDF to print and post.</div>
+    </div>
+  </div>
+</div>
+
+<div class="sample-wrap" id="sample">
+  <div class="sample-inner">
+    <p style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:1.5rem">Sample newsletter</p>
+    <div class="newsletter-preview">
+      <div class="nl-header">
+        <div class="nl-title">The Thornbury Village Post</div>
+        <div class="nl-subtitle">March 2026 &middot; Your monthly community update</div>
+      </div>
+      <div class="nl-section">
+        <h3>Parish Council News</h3>
+        <p>The council has approved the long-awaited resurfacing of Church Lane, with work scheduled to begin in April. Residents on the lane will receive a letter with full details of the temporary road closure ahead of the start date.</p>
+        <p>Planning permission has been granted for the new community noticeboard at the village green. The Friends of Thornbury have kindly offered to fund the installation.</p>
+      </div>
+      <div class="nl-section">
+        <h3>Upcoming Events</h3>
+        <div class="nl-event"><strong>Sat 22 March</strong> — Spring Quiz Night, The Crown Inn, 7pm. Teams of up to six, £3 per person.</div>
+        <div class="nl-event"><strong>Sun 30 March</strong> — Easter Egg Hunt, Village Green, 10am–12pm. Free entry for under 12s.</div>
+        <div class="nl-event"><strong>Fri 4 April</strong> — Parish Council Meeting, Village Hall, 7:30pm. All welcome.</div>
+      </div>
+      <div class="nl-section">
+        <h3>Community Notices</h3>
+        <p>The village litter pick will take place on Saturday 5 April, meeting at the car park at 9am. Bags and gloves provided. All welcome.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="pricing">
+  <p class="section-tag">Pricing</p>
+  <h2 class="section-title">Simple, <em>honest</em> pricing.</h2>
+  <p class="section-sub">One price. No setup fees. Cancel any time. First newsletter is always completely free.</p>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="price-tag">Free trial</div>
+      <div class="price-amount">£0</div>
+      <div class="price-period">Your first newsletter</div>
+      <ul class="price-features">
+        <li>One full newsletter written and sent</li>
+        <li>Emailed to your residents list</li>
+        <li>No card required</li>
+      </ul>
+    </div>
+    <div class="price-card featured">
+      <div class="price-tag">Monthly</div>
+      <div class="price-amount">£99</div>
+      <div class="price-period">per month, cancel any time</div>
+      <ul class="price-features">
+        <li>One newsletter every month</li>
+        <li>Emailed to your full residents list</li>
+        <li>PDF version included</li>
+        <li>Unlimited revisions</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="cta-band" id="get-started">
+  <h2>Get your first newsletter free.</h2>
+  <p>No commitment. No card required. See the result before you spend a penny.</p>
+  <a class="btn-light" href="order.html">Start now &rarr;</a>
+</div>
+
+<footer>
+  <span>&copy; 2026 Parish Post</span>
+  <span>hello@theparishpost.co.uk</span>
+</footer>
+</body>
+</html>
